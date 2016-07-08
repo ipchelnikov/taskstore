@@ -1,4 +1,4 @@
-List the problems with the C++ code here:
+// List the problems with the C++ code here:
 
 #include <stdio.h>
  
@@ -12,7 +12,7 @@ public:
     ~Feature()
     {
         if (points)
-            delete points;
+            delete [] points;
     }
  
     bool isValid() 
@@ -58,9 +58,16 @@ protected:
 int main(int argc, char* argv[])
 {
     Feature feature;
+
     FILE* file = fopen("features.dat", "r");
+
+    if (!file)
+        return 1;
+
     feature.read(file);
+
     if (!feature.isValid())
         return 1;
+
     return 0;
 }
