@@ -130,7 +130,7 @@ int main(int argc, char* argv[]){
 			std::chrono::duration<double>(end-start).count() << "sec\n";
 
 		start = std::chrono::system_clock::now();
-		printKMax<std::list,int>(arr, n, k, ofstr_vec);
+		printKMax<std::list,int>(arr, n, k, ofstr_list);
 		end = std::chrono::system_clock::now();
 
 		total_duration_list+=end-start;
