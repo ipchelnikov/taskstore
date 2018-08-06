@@ -111,32 +111,31 @@ int main(int argc, char* argv[]){
     		int arr[n];
 	    	for(i=0;i<n;i++)
       			ifstr  >> arr[i];
+		
+		/////////////////////////////////////////////
+		// Test Deque
 		auto start = std::chrono::system_clock::now();
 		printKMax<std::deque,int>(arr, n, k, ofstr);
 		auto end = std::chrono::system_clock::now();
 		
-		std::cout << "Duration Deque: " <<
-			std::chrono::duration<double>(end-start).count() << "sec\n";
-
 		total_duration+=end-start;
 		
+		/////////////////////////////////////////////
+		// Test Vector
 		start = std::chrono::system_clock::now();
 		printKMaxVec(arr, n, k, ofstr_vec);
 		end = std::chrono::system_clock::now();
 
 		total_duration_vector+=end-start;
 
-		std::cout << "Duration Vector: " <<
-			std::chrono::duration<double>(end-start).count() << "sec\n";
-
+		/////////////////////////////////////////////
+		// Test List
 		start = std::chrono::system_clock::now();
 		printKMax<std::list,int>(arr, n, k, ofstr_list);
 		end = std::chrono::system_clock::now();
 
 		total_duration_list+=end-start;
 
-		std::cout << "Duration List: " <<
-			std::chrono::duration<double>(end-start).count() << "sec\n";
     		t--;
   	}
 	std::cout << "Total duration deque: " << total_duration.count() << " sec\n";
