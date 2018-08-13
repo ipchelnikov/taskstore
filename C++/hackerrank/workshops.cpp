@@ -1,4 +1,11 @@
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+#include <map>
+#include <iostream>
+#include <fstream>
+#include <chrono>
+//#include <ctime>
+
+using namespace std;
 
 // https://www.hackerrank.com/challenges/attending-workshops/copy-from/81184701
 
@@ -72,21 +79,28 @@ static Available_Workshops* initialize(int* start_time, int* duration, int n)
 }
 
 int main(int argc, char *argv[]) {
+    std::ifstream ifst("workshop_test.txt");
     int n; // number of workshops
-    cin >> n;
+    ifst >> n;
     // create arrays of unknown size n
     int* start_time = new int[n];
     int* duration = new int[n];
 
     for(int i=0; i < n; i++){
-        cin >> start_time[i];
+        ifst >> start_time[i];
     }
     for(int i = 0; i < n; i++){
-        cin >> duration[i];
+        ifst >> duration[i];
     }
 
     Available_Workshops * ptr;
+    auto start = std::chrono::system_clock::now();
     ptr = initialize(start_time,duration, n);
+    auto end = std::chrono::system_clock::now();
+    std::cout << "Initialization time = " << std::chrono::duration<double>(end-start).count() << "\n";
+    start = std::chrono::system_clock::now();    
     cout << CalculateMaxWorkshops(ptr) << endl;
+    end = std::chrono::system_clock::now();
+    std::cout << "Calculation time = " << std::chrono::duration<double>(end-start).count() << "\n";
     return 0;
 }
