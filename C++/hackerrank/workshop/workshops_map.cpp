@@ -13,23 +13,24 @@
 
 struct Available_Workshops
 {
-    Available_Workshops(int* start_time, int* duration, int n) {
-        for(int i =0; i < n; ++i)
+    Available_Workshops(int* start_time, int* duration, int n)
+    {
+        for(int i = 0; i < n; ++i)
             schedule.insert(std::make_pair(start_time[i]+duration[i], start_time[i]));
     }
     
-    int CalculateMaxWorkshops()
+    int CalculateMaxWorkshops() 
     {
         int count = 0;
         int current_end = 0;
 
         for(auto i : schedule)
-        {
-           if(i.second >= current_end)
-           {
+           if(i.second >= current_end) {
                count++;
-	       current_end = i.first;
-	}
+               current_end = i.first;
+           }
+
+	return count;
     }
 
     std::multimap<int, int> schedule;
@@ -37,14 +38,18 @@ struct Available_Workshops
 
 int main(int argc, char *argv[]) {
 
-    int n; // number of workshops
-    int* start_time = new int[n];
-    int* duration = new int[n];
+    int n = 0; // number of workshops
+    int* start_time;
+    int* duration;
 
     // Read rest data
     std::ifstream ifst("workshop_test.txt");
 
     ifst >> n;
+    
+    start_time = new int[n];
+    duration = new int[n];
+
     for(int i=0; i < n; i++)
         ifst >> start_time[i];
 
